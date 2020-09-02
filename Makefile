@@ -382,8 +382,8 @@ OBJCOPY   := $(CROSS)objcopy
 PYTHON    := python3
 
 # change the compiler to gcc, to use the default, install the gcc-mips-linux-gnu package
-ifeq ($(COMPILER),gcc)
-  CC        := $(CROSS)gcc
+ifeq ($(COMPILER),powerpc-eabi-gcc)
+  CC        := $(CROSS)powerpc-eabi-gcc
 endif
 
 ifeq ($(TARGET_N64),1)
@@ -394,7 +394,7 @@ endif
 INCLUDE_CFLAGS := -I include -I $(BUILD_DIR) -I $(BUILD_DIR)/include -I src -I .
 
 # Check code syntax with host compiler
-CC_CHECK := gcc
+CC_CHECK := powerpc-eabi-gcc
 CC_CHECK_CFLAGS := -fsyntax-only -fsigned-char $(CC_CFLAGS) $(TARGET_CFLAGS) $(INCLUDE_CFLAGS) -std=gnu90 -Wall -Wextra -Wno-format-security -Wno-main -DNON_MATCHING -DAVOID_UB $(VERSION_CFLAGS) $(GRUCODE_CFLAGS)
 
 COMMON_CFLAGS = $(OPT_FLAGS) $(TARGET_CFLAGS) $(INCLUDE_CFLAGS) $(VERSION_CFLAGS) $(MATCH_CFLAGS) $(MIPSISET) $(GRUCODE_CFLAGS)
@@ -425,8 +425,8 @@ else # TARGET_N64
 
 AS := powerpc-eabi-as
 ifneq ($(TARGET_WEB),1)
-  CC := gcc
-  CXX := g++
+  CC := powerpc-eabi-gcc
+  CXX := powerpc-eabi-g++
 else
   CC := emcc
 endif
