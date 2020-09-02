@@ -372,9 +372,9 @@ ifeq ($(COMPILER),ido)
   endif
 endif
 
-AS        := $(CROSS)as
-CC        := $(QEMU_IRIX) -silent -L $(IRIX_ROOT) $(IRIX_ROOT)/usr/bin/cc
-CPP       := cpp -P -Wno-trigraphs
+AS        := powerpc-eabi-as
+CC        := powerpc-eabi-gcc
+CPP       := powerpc-eabi-g++ -P -Wno-trigraphs
 LD        := $(CROSS)ld
 AR        := $(CROSS)ar
 OBJDUMP   := $(CROSS)objdump
@@ -423,7 +423,7 @@ export LANG := C
 
 else # TARGET_N64
 
-AS := as
+AS := powerpc-eabi-as
 ifneq ($(TARGET_WEB),1)
   CC := gcc
   CXX := g++
